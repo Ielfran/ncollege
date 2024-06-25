@@ -6,6 +6,47 @@
     <title>@yield('title')</title>
     
     @vite('resources/css/app.css')
+    <style>
+        /* Custom styles */
+        .top-menu-bg {
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 8px 16px; /* Padding around menu items */
+            border-radius: 20px; /* Rounded corners */
+            display: inline-block; /* Display as inline block */
+        }
+
+        .mobile-menu {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Text shadow for mobile menu */
+        }
+
+        .dropdown-content {
+            display: none;  /* Hidden by default */
+            position: absolute; /* Absolute positioning */
+            background-color: white; /* Background color */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow */
+            z-index: 1; /* Ensure it's on top */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block; /* Display when hovered */
+        }
+
+        .dropdown-content a {
+            color: black; /* Link color */
+            padding: 12px 16px; /* Padding */
+            text-decoration: none; /* No underline */
+            display: block; /* Block display */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1; /* Background color on hover */
+        }
+
+        /* Increased font size for menu items */
+        .menu-item, .dropdown-content a {
+            font-size: 1.25rem; /* 20px */
+        }
+    </style>
 </head>
 <body class="flex flex-col bg-gray-200 ">
 <div class="fixed top-0 left-0 w-full">
@@ -33,50 +74,80 @@
                 </div>
                 <div class="mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M12 2.38c-2.89 0-3.25.01-4.37.06-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2s-3.25.01-4.37.06c-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2.38zm0 1.44c2.87 0 3.21 0 4.34.06 1.05.05 1.63.23 2.01.39.49.19.84.42 1.21.79.37.37.6.72.79 1.21.16.38.34.96.39 2.01.06 1.13.06 1.47.06 4.34s0 3.21-.06 4.34c-.05 1.05-.23 1.63-.39 2.01a3.24 3.24 0 0 1-.79 1.21c-.37.37-.72.6-1.21.79-.38.16-.96.34-2.01.39-1.13.06-1.47.06-4.34.06s-3.21 0-4.34-.06c-1.05-.05-1.63-.23-2.01-.39a3.24 3.24 0 0 1-1.21-.79c-.37-.37-.6-.72-.79-1.21-.16-.38-.34-.96-.39-2.01-.06-1.13-.06-1.47-.06-4.34s0-3.21.06-4.34c.05-1.05.23-1.63.39-2.01a3.24 3.24 0 0 1 .79-1.21c.37-.37.72-.6 1.21-.79.38-.16.96-.34 2.01-.39 1.13-.06 1.47-.06 4.34-.06zm0 0a9.62 9.62 0 0 0 0 19.24 9.62 9.62 0 0 0 0-19.24zm0 4.77a4.83 4.83 0 0 1 4.83 4.83A4.83 4.83 0 0 1 12 18.24a4.83 4.83 0 0 1-4.83-4.83 4.83 4.83 0 0 1 4.83-4.83zm0 1.73a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2zm6.66-2.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zm0 0"/>
+                        <path d="M12 2.38c-2.89 0-3.25.01-4.37.06-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2s-3.25.01-4.37.06c-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2zm0 17.1a5.1 5.1 0 1 1 0-10.2 5.1 5.1 0 0 1 0 10.2zm6.49-9.1a1.17 1.17 0 1 1 0-2.34 1.17 1.17 0 0 1 0 2.34z"/>
                     </svg>
                 </div>
             </div>
         </div>
-    </header>
-<nav class="bg-white shadow fixed left-0 w-full">
-    <div class="container mx-auto px-6 py-3">
-        <div class="flex justify-between items-center">
-            <div class="text-gray-700 text-lg font-semibold">
-                <img src="images/brand.avif" class="lg:h-1/3 w-1/3"/>
+
+        <!-- Mobile menu button -->
+        <div x-data="{ open: false }" class="bg-white border-b border-gray-200 md:hidden">
+            <div class="flex items-center justify-between p-4">
+                <a href="#" class="text-2xl font-bold tracking-tight text-gray-800 no-underline hover:no-underline">
+                    <img src="{{ asset('images/abmcLogo.png') }}" alt="Logo" class="h-12">
+                </a>
+                <button @click="open = !open" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                        <path x-show="!open" fill-rule="evenodd" clip-rule="evenodd" d="M4 5h16M4 12h16M4 19h16" />
+                        <path x-show="open" fill-rule="evenodd" clip-rule="evenodd" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <div class="px-4 cursor-pointer md:hidden" id="icon" onclick="toggleMenu()">
-                <!-- Hamburger Icon -->
-                <svg id="hamburger-icon" class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 4a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm5-1a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm6 4a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z"/>
-                </svg>
-                <!-- Cross Icon (hidden initially) -->
-                <svg id="cross-icon" class="w-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M14.95 3.293a1 1 0 0 0-1.414-1.414L10 8.586 6.464 5.05a1 1 0 1 0-1.414 1.414L8.586 10 5.05 13.536a1 1 0 1 0 1.414 1.414L10 11.414l3.536 3.536a1 1 0 0 0 1.414-1.414L11.414 10l3.536-3.536a1 1 0 0 0 0-1.414z"/>
-                </svg>
-            </div>
-            <div class="hidden md:flex" id="menu">
-                <div class="flex space-x-6 text-lg font-semibold">
-                    <a href="/" class="text-gray-800 hover:text-gray-600">Home</a>
-                    <a href="/about" class="text-gray-800 hover:text-gray-600">Programs</a>
-                    <a href="/about" class="text-gray-800 hover:text-gray-600">About Us</a>
-                    <a href="/contact" class="text-gray-800 hover:text-gray-600">Contact Us</a>
+            <div x-show="open" class="px-2 pt-2 pb-3">
+                <a href="/" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Home</a>
+                <a href="/about" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">About</a>
+                <div class="relative inline-block text-left dropdown">
+                    <button class="inline-flex justify-center w-full px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Programs</button>
+                    <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
+                        <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
+                    </div>
                 </div>
+                <a href="/contact" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Contact</a>
             </div>
         </div>
-    <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
-        <div class="flex flex-col my-5 mx-5">
-        <a href="/" class="text-gray-800 hover:text-gray-600 my-2">Home</a>
-        <a href="/about" class="text-gray-800 hover:text-gray-600 my-2">Programs</a>
-        <a href="/about" class="text-gray-800 hover:text-gray-600 my-2">About Us</a>
-        <a href="/contact" class="text-gray-800 hover:text-gray-600 my-2">Contact Us</a>
-    </div>
-    </div>
 
-</div>
-
-    </div>
-</nav>    
+        <!-- Desktop menu -->
+        <nav class="items-center justify-between hidden md:flex">
+            <div class="p-4">
+                <a href="#" class="text-2xl font-bold tracking-tight text-gray-800 no-underline hover:no-underline">
+                    <img src="{{ asset('images/abmcLogo.png') }}" alt="Logo" class="h-12">
+                </a>
+            </div>
+            <div class="flex-1 flex items-center justify-center space-x-4">
+                <a href="/" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">Home</a>
+                <a href="/about" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">About</a>
+                <div class="relative inline-block text-left dropdown">
+                    <button class="menu-item inline-flex items-center text-lg font-semibold text-gray-800 hover:text-gray-600">
+                        Programs
+                    </button>
+                    <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
+                        <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
+                    </div>
+                </div>
+                <a href="/contact" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">Contact</a>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 2H3a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h9.75v-7.35h-2.6V11.9h2.6V9.44c0-2.57 1.57-3.97 3.86-3.97 1.1 0 2.05.08 2.33.12v2.7h-1.6c-1.26 0-1.5.6-1.5 1.48v1.94h3l-.39 3.75h-2.61V23H21a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.38c-2.89 0-3.25.01-4.37.06-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2zm0 17.1a5.1 5.1 0 1 1 0-10.2 5.1 5.1 0 0 1 0 10.2zm6.49-9.1a1.17 1.17 0 1 1 0-2.34 1.17 1.17 0 0 1 0 2.34z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.38c-2.89 0-3.25.01-4.37.06-1.12.06-1.9.27-2.57.57a4.89 4.89 0 0 0-1.88 1.21 4.89 4.89 0 0 0-1.21 1.88c-.3.67-.51 1.45-.57 2.57C2.01 8.75 2 9.11 2 12s.01 3.25.06 4.37c.06 1.12.27 1.9.57 2.57a4.89 4.89 0 0 0 1.21 1.88 4.89 4.89 0 0 0 1.88 1.21c.67.3 1.45.51 2.57.57 1.12.06 1.48.07 4.37.07s3.25-.01 4.37-.06c1.12-.06 1.9-.27 2.57-.57a4.89 4.89 0 0 0 1.88-1.21 4.89 4.89 0 0 0 1.21-1.88c.3-.67.51-1.45.57-2.57.06-1.12.07-1.48.07-4.37s-.01-3.25-.06-4.37c-.06-1.12-.27-1.9-.57-2.57a4.89 4.89 0 0 0-1.21-1.88 4.89 4.89 0 0 0-1.88-1.21c-.67-.3-1.45-.51-2.57-.57C15.25 2.01 14.89 2 12 2zm0 17.1a5.1 5.1 0 1 1 0-10.2 5.1 5.1 0 0 1 0 10.2zm6.49-9.1a1.17 1.17 0 1 1 0-2.34 1.17 1.17 0 0 1 0 2.34z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </nav>
     
     
 </div>
@@ -99,6 +170,20 @@
         hamburgerIcon.classList.toggle('hidden');
         crossIcon.classList.toggle('hidden');
     });
+
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownContent = document.querySelector('.dropdown-content');
+
+// Change 'click' to 'mouseenter'
+dropdown.addEventListener('mouseenter', function() {
+  dropdownContent.classList.toggle('hidden'); // Toggle visibility
+});
+
+// Optionally, add another listener for 'mouseleave' to hide on hover out
+dropdown.addEventListener('mouseleave', function() {
+  dropdownContent.classList.add('hidden'); // Hide on mouse leave
+});
+
 </script>
 
 

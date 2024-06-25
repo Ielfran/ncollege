@@ -3,13 +3,13 @@
 @section('title', 'About Us')
 
 @section('content')
-<div class="lg:h-screen">
+<div class="flex flex-col min-h-screen"> <!-- Flex container to cover the whole screen -->
     <div class="bg-cover bg-center h-96" style="background-image: url('/images/aboutUs.webp');">
         <p class="font-bold">sdhvsuibviusdvbuisdvsdv</p>
     </div>
 
-    <div class="container mx-auto px-6 py-8 text-lg w-4/5 sm:w-3/4 lg:w-1/2">
-        <section class=" bg-white bg-opacity-80 shadow-lg rounded-lg p-8 mt-10">
+    <div class="container mx-auto px-6 py-8 text-lg flex-grow"> <!-- flex-grow to make content take remaining space -->
+        <section class="bg-white bg-opacity-80 shadow-lg rounded-lg p-8 mt-10">
             <h1 class="text-4xl font-bold mb-6 text-center">About Us</h1>
             <p class="mb-4 text-gray-700 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
@@ -32,9 +32,12 @@
             <p>
                 sdgvsdbsdbmoi
                 dsvdvvdggsegsgeg
-        </p>
+            </p>
         </section>
     </div>
 
+    <footer class="text-center py-4 bg-gray-200"> <!-- Footer -->
+        Footer Content Here
+    </footer>
 </div>
 @endsection
