@@ -36,8 +36,6 @@
         </section>
     </div>
 
-    <footer class="text-center py-4 bg-gray-200"> <!-- Footer -->
-        Footer Content Here
-    </footer>
+   
 </div>
 @endsection
