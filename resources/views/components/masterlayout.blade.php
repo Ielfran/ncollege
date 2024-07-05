@@ -50,8 +50,7 @@
 <!------------------------------------------------------------------------------------------------------------------------>
 
 <body class="flex flex-col bg-gray-200 pt-24">
-<div class="fixed top-0 left-0 w-full">
-    <header class="bg-white">
+    <header class="bg-white fixed top-0 left-0 w-full z-50">
         <div class="flex bg-stone-500 shadow items-center justify-between py-2 px-6"><!-- make the contents go up and down when the screen in decreased-->
             <div class="flex">
                 <div class="flex items-center mr-4">
@@ -80,9 +79,8 @@
                 </div>
             </div>
         </div>
-    </header>
 
-   <nav class="bg-white shadow fixed left-0 w-full">
+   <nav class="bg-white shadow fixed left-0 w-full z-50">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="text-gray-700 text-lg font-semibold">
@@ -129,6 +127,8 @@
             </div>
         </div>
     </nav>
+</header>
+    <article class="mt-20">
     <!-- Content section -->
     @hasSection('content')
         @yield('content')
@@ -137,8 +137,9 @@
     @endif
 
     @stack('scripts')
-
+    </article>
     <!-- JavaScript -->
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
     const dropdowns = document.querySelectorAll('.dropdown');

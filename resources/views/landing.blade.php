@@ -1,10 +1,30 @@
-@extends    ('components.masterlayout')
+@extends('components.masterlayout')
 
 @section('title', 'Home')
 
 @section('content')
+<!-- Main Container: Flex Container to Split Screen -->
+<div class="flex flex-col md:flex-row h-screen">
+    <!-- Left Content -->
+    <div class="flex-1 bg-gray-100 flex items-center w-full md:w-1/3 justify-center">
+        <div class="text-center px-6 md:px-12">
+            <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Welcome to Our Platform</h2>
+            <p class="text-lg text-gray-700 mb-8">Explore the features and benefits we offer. Our platform is designed to provide you with the best experience.</p>
+            <a href="#about" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">Learn More</a>
+        </div>
+    </div>
+
+    <!-- Right Content: Animated Background -->
+    <section class="relative flex-1 h-full w-full md:w-2/3 flex items-center justify-center text-white overflow-hidden z-50">
+        <div class="absolute inset-0 bg-cover bg-center animate-backgroundChange z-0"></div>
+    </section>
+</div>
+
+<!-- Section 2: About Us -->
+
+<!-- Additional Content Section -->
 <div class="bg-gray-100">
-    <div class="container mx-auto py-4 pt-32">
+    <div class="container mx-auto py-4 pt-20">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-bold mb-2">Box 1</h2>
