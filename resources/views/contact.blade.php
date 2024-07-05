@@ -10,7 +10,7 @@
 
     <div class="container mx-auto px-6 py-8 text-lg flex-grow"> <!-- flex-grow to make content take remaining space -->
         <section class="bg-white bg-opacity-80 shadow-lg rounded-lg p-8 mt-10">
-            <h1 class="text-4xl font-bold mb-6 text-center">About Us</h1>
+            <h1 class="text-4xl font-bold mb-6 text-center">CONTACT Us</h1>
             <p class="mb-4 text-gray-700 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

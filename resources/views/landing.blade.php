@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto py-4 pt-32">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-bold mb-2">Box 1</h2>

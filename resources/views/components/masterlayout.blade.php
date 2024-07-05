@@ -7,44 +7,45 @@
     
     @vite('resources/css/app.css')
     <style>
-        .top-menu-bg {
-            background-color: #f0f0f0; 
-            padding: 8px 16px; 
-            border-radius: 20px; 
-            display: inline-block; 
-        }
-
         .mobile-menu {
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
-        }
+    text-shadow: 1px 1px 2px rgba(211, 17, 17, 0.3);
+}
 
-        .dropdown-content {
-            display: none;  
-            position: absolute; 
-            background-color: white; 
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
-            z-index: 1;
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: red;
+    box-shadow: 0px 8px 16px 0px rgba(19, 18, 18, 0.2);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+}
 
-        .dropdown:hover .dropdown-content {
-            display: block; 
-        }
+.dropdown:hover .dropdown-content {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
 
-        .dropdown-content a {
-            color: black; 
-            padding: 12px 16px;
-            text-decoration: none; 
-            display: block; 
-        }
+.dropdown-content a {
+    color: rgb(246, 238, 238);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
+.dropdown-content a:hover {
+    background-color: #2117af;
+}
 
-        .menu-item, .dropdown-content a {
-            font-size: 1.25rem;
-        }
-    </style>
+.menu-item,
+.dropdown-content a {
+    font-size: 1.25rem;
+}
+
+   </style>
 </head>
 <!------------------------------------------------------------------------------------------------------------------------>
 
@@ -79,96 +80,122 @@
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- Mobile menu button -->
-        <div x-data="{ open: false }" class="bg-white border-b border-gray-200 md:hidden">
-            <div class="flex items-center justify-between p-4">
-                <a href="#" class="text-2xl font-bold tracking-tight text-gray-800 no-underline hover:no-underline">
-                    <img src="{{ asset('images/brand.avif') }}" alt="Logo" class="h-12">
-                </a>
-                    <button @click="open = !open" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                        <path x-show="!open" fill-rule="evenodd" clip-rule="evenodd" d="M4 5h16M4 12h16M4 19h16" />
-                        <path x-show="open" fill-rule="evenodd" clip-rule="evenodd" d="M6 18L18 6M6 6l12 12" />
+   <nav class="bg-white shadow fixed left-0 w-full">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-gray-700 text-lg font-semibold">
+                    <img src="images/brand.avif" class="lg:h-1/3 w-1/3"/>
+                </div>
+                <div class="px-4 cursor-pointer md:hidden" id="icon" onclick="toggleMenu()">
+                    <!-- Hamburger Icon -->
+                    <svg id="hamburger-icon" class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 4a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm5-1a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm6 4a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z"/>
                     </svg>
-                </button>
-            </div>
-            <div x-show="open" class="px-2 pt-2 pb-3">
-                <a href="/" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Home</a>
-                <a href="/about" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">About</a>
-                <div class="relative inline-block text-left dropdown">
-                    <button class="inline-flex justify-center w-full px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Programs</button>
-                    <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
-                        <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
+                    <!-- Cross Icon (hidden initially) -->
+                    <svg id="cross-icon" class="w-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M14.95 3.293a1 1 0 0 0-1.414-1.414L10 8.586 6.464 5.05a1 1 0 1 0-1.414 1.414L8.586 10 5.05 13.536a1 1 0 1 0 1.414 1.414L10 11.414l3.536 3.536a1 1 0 0 0 1.414-1.414L11.414 10l3.536-3.536a1 1 0 0 0 0-1.414z"/>
+                    </svg>
+                </div>
+                <div class="hidden md:flex" id="menu">
+                    <div class="flex space-x-6 text-lg font-semibold">
+                        <a href="/" class="text-gray-800 hover:text-gray-600">Home</a>
+                        <div class="relative inline-block text-left dropdown">
+                            <button class="inline-flex justify-center w-full text-lg font-semibold text-red-800 rounded hover:bg-gray-100">Programs</button>
+                            <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
+                                <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
+                            </div>
+                        </div>
+                        <a href="/about" class="text-gray-800 hover:text-gray-600">About Us</a>
+                        <a href="/contact" class="text-gray-800 hover:text-gray-600">Contact Us</a>
                     </div>
                 </div>
-                <a href="/contact" class="block px-3 py-2 mt-1 text-lg font-semibold text-gray-800 rounded hover:bg-gray-100">Contact</a>
+            </div>
+            <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
+                <div class="flex flex-col my-5 mx-5">
+                    <a href="/" class="text-gray-800 hover:text-gray-600 mt-5">Home</a>
+                    <div class="relative inline-block text-left dropdown">
+                        <button class="inline-flex w-full mt-5 text-lg font-semibold text-gray-800 rounded hover:text-gray-600">Programs</button>
+                        <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
+                            <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
+                        </div>
+                    </div>
+                    <a href="/about" class="text-gray-800 hover:text-gray-600 mt-5">About Us</a>
+                    <a href="/contact" class="text-gray-800 hover:text-gray-600 mt-5">Contact Us</a>
+                </div>
             </div>
         </div>
+    </nav>
+    <!-- Content section -->
+    @hasSection('content')
+        @yield('content')
+    @else
+        <h2>NOT FOUND</h2>
+    @endif
 
-        <!-- Desktop menu -->
-        <nav class="items-center justify-between hidden md:flex">
-            <div class="p-4">
-                <a href="#" class="text-2xl font-bold tracking-tight text-gray-800 no-underline hover:no-underline">
-                    <img src="{{ asset('images/abmcLogo.png') }}" alt="Logo" class="h-12">
-                </a>
-            </div>
-            <div class="flex-1 flex items-center justify-center space-x-4">
-                <a href="/" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">Home</a>
-                <a href="/about" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">About</a>
-                <div class="relative inline-block text-left dropdown">
-                    <button class="menu-item inline-flex items-center text-lg font-semibold text-gray-800 hover:text-gray-600">
-                        Programs
-                    </button>
-                    <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
-                        <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
-                    </div>
-                </div>
-                <a href="/contact" class="menu-item text-lg font-semibold text-gray-800 hover:text-gray-600">Contact</a>
-            </div>
-        </nav>    
-</div>
+    @stack('scripts')
 
-        @hasSection('content')
-            @yield('content')
-        @else
-            <h2>NOT FOUND</h2>
-        @endif
+    <!-- JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
 
-    @stack('scripts') 
+    dropdowns.forEach(dropdown => {
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
+        let timeout;
 
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(timeout);
+            dropdownContent.style.display = 'block';
+        });
 
+        dropdown.addEventListener('mouseleave', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                dropdownContent.style.display = 'none';
+            }, 300); // Delay in ms
+        });
 
-  <!--javascript----------------------------------------------------------------------------------------------------------------------------------->  
-<script>
-    
-    const icon = document.getElementById('icon');
-    const mobileMenu = document.getElementById('mobile-menu');
+        // Additional event listener to keep dropdown visible when mouse is over it
+        dropdownContent.addEventListener('mouseenter', function() {
+            clearTimeout(timeout);
+        });
+
+        // Hide dropdown when mouse leaves dropdown content
+        dropdownContent.addEventListener('mouseleave', function() {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                dropdownContent.style.display = 'none';
+            }, 300); // Delay in ms
+        });
+    });
+});
+     function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
     const hamburgerIcon = document.getElementById('hamburger-icon');
     const crossIcon = document.getElementById('cross-icon');
 
-    icon.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        hamburgerIcon.classList.toggle('hidden');
-        crossIcon.classList.toggle('hidden');
-    });
+    if (menu && hamburgerIcon && crossIcon) {
+        console.log('Menu clicked');
+        
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            hamburgerIcon.classList.add('hidden');
+            crossIcon.classList.remove('hidden');
+        } else {
+            menu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            crossIcon.classList.add('hidden');
+        }
+    } else {
+        console.error('Menu or icons not found');
+    }
+}
 
-    const dropdown = document.querySelector('.dropdown');
-    const dropdownContent = document.querySelector('.dropdown-content');
-
-// Change 'click' to 'mouseenter'
-dropdown.addEventListener('mouseenter', function() {
-  dropdownContent.classList.toggle('hidden'); // Toggle visibility
-});
-
-// Optionally, add another listener for 'mouseleave' to hide on hover out
-dropdown.addEventListener('mouseleave', function() {
-  dropdownContent.classList.add('hidden'); // Hide on mouse leave
-});
-
-</script>
+    </script>
 
 
 <!----------------------------------------------------------------------------------------->
