@@ -49,7 +49,7 @@
 </head>
 <!------------------------------------------------------------------------------------------------------------------------>
 
-<body class="flex flex-col bg-gray-200 pt-24">
+<body class="flex flex-col bg-gray-200">
     <header class="bg-white fixed top-0 left-0 w-full z-50">
         <div class="flex bg-stone-500 shadow items-center justify-between py-2 px-6"><!-- make the contents go up and down when the screen in decreased-->
             <div class="flex">
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-   <nav class="bg-white shadow fixed left-0 w-full z-50">
+        <nav class="bg-white shadow fixed left-0 w-full z-50">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="text-gray-700 text-lg font-semibold">
@@ -110,8 +110,8 @@
                         <a href="/contact" class="text-gray-800 hover:text-gray-600">Contact Us</a>
                     </div>
                 </div>
-            </div>
-            <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
+                </div>
+                <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
                 <div class="flex flex-col my-5 mx-5">
                     <a href="/" class="text-gray-800 hover:text-gray-600 mt-5">Home</a>
                     <div class="relative inline-block text-left dropdown">
@@ -124,11 +124,11 @@
                     <a href="/about" class="text-gray-800 hover:text-gray-600 mt-5">About Us</a>
                     <a href="/contact" class="text-gray-800 hover:text-gray-600 mt-5">Contact Us</a>
                 </div>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-    <article class="mt-20">
+            </nav>
+        </header>
+    <article >
     <!-- Content section -->
     @hasSection('content')
         @yield('content')

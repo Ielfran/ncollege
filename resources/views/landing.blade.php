@@ -6,7 +6,7 @@
 <!-- Main Container: Flex Container to Split Screen -->
 <div class="flex flex-col md:flex-row h-screen">
     <!-- Left Content -->
-    <div class="flex-1 bg-gray-100 flex items-center w-full md:w-1/3 justify-center">
+    <div class="h-1/3 md:h-full w-full md:w-1/3 bg-gray-100 flex items-center justify-center">
         <div class="text-center px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Welcome to Our Platform</h2>
             <p class="text-lg text-gray-700 mb-8">Explore the features and benefits we offer. Our platform is designed to provide you with the best experience.</p>
@@ -15,12 +15,10 @@
     </div>
 
     <!-- Right Content: Animated Background -->
-    <section class="relative flex-1 h-full w-full md:w-2/3 flex items-center justify-center text-white overflow-hidden z-50">
+    <div class="relative h-2/3 md:h-full w-full md:w-2/3 flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center animate-backgroundChange z-0"></div>
-    </section>
+    </div>
 </div>
-
-<!-- Section 2: About Us -->
 
 <!-- Additional Content Section -->
 <div class="bg-gray-100">
