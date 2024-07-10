@@ -7,44 +7,67 @@
     
     @vite('resources/css/app.css')
     <style>
-        .mobile-menu {
-    text-shadow: 1px 1px 2px rgba(211, 17, 17, 0.3);
-}
+    .mobile-menu {
+            text-shadow: 1px 1px 2px rgba(211, 17, 17, 0.3);
+    }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: red;
-    box-shadow: 0px 8px 16px 0px rgba(19, 18, 18, 0.2);
-    z-index: 1;
-    opacity: 0;
-    visibility: hidden;
-    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
-}
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: red;
+        box-shadow: 0px 8px 16px 0px rgba(19, 18, 18, 0.2);
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0s linear 0.5s, opacity 0.5s linear;
+    }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s;
-}
+    .dropdown:hover .dropdown-content {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+    }
 
-.dropdown-content a {
-    color: rgb(246, 238, 238);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
+    .dropdown-content a {
+        color: rgb(246, 238, 238);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
 
-.dropdown-content a:hover {
-    background-color: #2117af;
-}
+    .dropdown-content a:hover {
+        background-color: #2117af;
+    }
 
-.menu-item,
-.dropdown-content a {
-    font-size: 1.25rem;
-}
+    .menu-item,
+    .dropdown-content a {
+        font-size: 1.25rem;
+    }
+    
+    @keyframes jump {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-10px); }
+    }
 
+    .jump {
+        animation: jump 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .dropdown-content {
+        display: none;
+    }
+
+    /* Add bottom border on hover */
+    .flex > a:hover,
+    .dropdown-content > a:hover {
+        border-bottom: 1px solid #e53e3e; /* Red color for hover effect */
+    }
    </style>
 </head>
 <!------------------------------------------------------------------------------------------------------------------------>
@@ -97,33 +120,35 @@
                     </svg>
                 </div>
                 <div class="hidden md:flex" id="menu">
-                    <div class="flex space-x-6 text-lg font-semibold">
-                        <a href="/" class="text-gray-800 hover:text-gray-600">Home</a>
+                   <div class="flex space-x-6 text-lg font-semibold">
+                        <a href="/" class="text-gray-800 hover:text-gray-600 hover:border-b-2 p-5 border-transparent duration-300">Home</a>
                         <div class="relative inline-block text-left dropdown">
-                            <button class="inline-flex justify-center w-full text-lg font-semibold text-red-800 rounded hover:bg-gray-100">Programs</button>
+                            <button class="inline-flex justify-center w-full text-lg p-5 font-semibold rounded hover:bg-gray-100 hover:border-b-2 border-transparent duration-300">Programs</button>
+                            <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:border-b-2 border-transparent transition duration-300">Program List</a>
+                                <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:border-b-2 border-transparent transition duration-300">New Program</a>
+                            </div>
+                        </div>
+                    <a href="/about" class="hover:text-gray-600 hover:border-b-2 p-5 border-transparent text-red-500 jump duration-300">Enroll</a>
+                    <a href="/about" class="text-gray-800 hover:text-gray-600 p-5 hover:border-b-2 border-transparent duration-300">About Us</a>
+                    <a href="/contact" class="text-gray-800 hover:text-gray-600 p-5 hover:border-b-2 border-transparent  duration-300">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+                <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
+                    <div class="flex flex-col my-5 mx-5">
+                        <a href="/" class="text-gray-800 hover:text-gray-600 mt-5">Home</a>
+                        <div class="relative inline-block text-left dropdown">
+                            <button class="inline-flex w-full mt-5 text-lg font-semibold text-gray-800 rounded hover:text-gray-600">Programs</button>
                             <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                 <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
                                 <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
                             </div>
                         </div>
-                        <a href="/about" class="text-gray-800 hover:text-gray-600">About Us</a>
-                        <a href="/contact" class="text-gray-800 hover:text-gray-600">Contact Us</a>
+                        <a href="/about" class="hover:text-gray-600 jump text-red-500">Enroll</a>
+                        <a href="/about" class="text-gray-800 hover:text-gray-600 mt-5">About Us</a>
+                        <a href="/contact" class="text-gray-800 hover:text-gray-600 mt-5">Contact Us</a>
                     </div>
-                </div>
-                </div>
-                <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
-                <div class="flex flex-col my-5 mx-5">
-                    <a href="/" class="text-gray-800 hover:text-gray-600 mt-5">Home</a>
-                    <div class="relative inline-block text-left dropdown">
-                        <button class="inline-flex w-full mt-5 text-lg font-semibold text-gray-800 rounded hover:text-gray-600">Programs</button>
-                        <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
-                            <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
-                        </div>
-                    </div>
-                    <a href="/about" class="text-gray-800 hover:text-gray-600 mt-5">About Us</a>
-                    <a href="/contact" class="text-gray-800 hover:text-gray-600 mt-5">Contact Us</a>
-                </div>
                 </div>
             </div>
             </nav>
@@ -170,7 +195,7 @@
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 dropdownContent.style.display = 'none';
-            }, 300); // Delay in ms
+            }, 300); 
         });
     });
 });
