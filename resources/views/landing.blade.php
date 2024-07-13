@@ -5,19 +5,20 @@
 @section('content')
 <!-- Main Container: Flex Container to Split Screen -->
 <div class="flex flex-col md:flex-row h-screen">
+     <div class="relative h-2/3 md:h-full w-full md:w-2/3 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center animate-backgroundChange z-0"></div>
+    </div>
     <!-- Left Content -->
     <div class="h-1/3 md:h-full w-full md:w-1/3 bg-gray-100 flex items-center justify-center">
         <div class="text-center px-6 md:px-12">
             <h2 class="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">Welcome to Our Platform</h2>
-            <p class="text-lg text-gray-700 mb-8">Enim eiusmod incididunt dolore est. Ipsum sint sint esse sit velit laboris cupidatat ad culpa officia ipsum velit.</p>
-            <a href="#about" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">Enroll now</a>
+            <p class="text-lg text-gray-700 mb-8">Ullamco occaecat cupidatat qui Lorem proident officia.lOccaecat eiusmod aliqua et culpa magna ad.</p>
+            <a href="#about" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">Enroll</a>
         </div>
     </div>
 
     <!-- Right Content: Animated Background -->
-    <div class="relative h-2/3 md:h-full w-full md:w-2/3 flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center animate-backgroundChange z-0"></div>
-    </div>
+   
 </div>
 
 <!-- Additional Content Section -->
@@ -35,5 +36,4 @@
         </div>
     </div>
 </div>
-
 @endsection

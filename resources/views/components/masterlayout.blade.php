@@ -50,7 +50,11 @@
         40% { transform: translateY(-10px); }
         60% { transform: translateY(-10px); }
     }
-
+    
+     .jump:hover {
+        animation-play-state: paused; /* Pause animation on hover */
+        color:#e53e3e;
+    }
     .jump {
         animation: jump 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
     }
@@ -64,17 +68,17 @@
     }
 
     /* Add bottom border on hover */
-    .flex > a:hover,
-    .dropdown-content > a:hover {
-        border-bottom: 1px solid #e53e3e; /* Red color for hover effect */
+    #menu .flex > a:hover,
+    #menu .dropdown-content > a:hover {
+        border-bottom: 1.2px solid #e53e3e; /* Red color for hover effect */
     }
    </style>
 </head>
 <!------------------------------------------------------------------------------------------------------------------------>
 
 <body class="flex flex-col bg-gray-200">
-    <header class="bg-white fixed top-0 left-0 w-full z-50">
-        <div class="flex bg-stone-500 shadow items-center justify-between py-2 px-6"><!-- make the contents go up and down when the screen in decreased-->
+    <header class="bg-white top-0 left-0 w-full z-50">
+        <div id="navbar-top" class="flex transition duration-300 ease-in-out bg-stone-500 shadow items-center justify-between py-2 px-6"><!-- make the contents go up and down when the screen in decreased-->
             <div class="flex">
                 <div class="flex items-center mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -103,56 +107,70 @@
             </div>
         </div>
 
-        <nav class="bg-white shadow fixed left-0 w-full z-50">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-gray-700 text-lg font-semibold">
-                    <img src="images/brand.avif" class="lg:h-1/3 w-1/3"/>
-                </div>
-                <div class="px-4 cursor-pointer md:hidden" id="icon" onclick="toggleMenu()">
-                    <!-- Hamburger Icon -->
-                    <svg id="hamburger-icon" class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M3 4a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm5-1a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm6 4a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z"/>
-                    </svg>
-                    <!-- Cross Icon (hidden initially) -->
-                    <svg id="cross-icon" class="w-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M14.95 3.293a1 1 0 0 0-1.414-1.414L10 8.586 6.464 5.05a1 1 0 1 0-1.414 1.414L8.586 10 5.05 13.536a1 1 0 1 0 1.414 1.414L10 11.414l3.536 3.536a1 1 0 0 0 1.414-1.414L11.414 10l3.536-3.536a1 1 0 0 0 0-1.414z"/>
-                    </svg>
-                </div>
-                <div class="hidden md:flex" id="menu">
-                   <div class="flex space-x-6 text-lg font-semibold">
-                        <a href="/" class="text-gray-800 hover:text-gray-600 hover:border-b-2 p-5 border-transparent duration-300">Home</a>
+        <nav id="navbar-fixed" class="bg-white fixed shadow left-0 w-full z-50">
+            <div class="container mx-auto px-6 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="text-gray-700 text-lg font-semibold">
+                        <img src="images/brand.avif" class="lg:h-1/4 w-1/4"/>
+                    </div>
+                    <div class="px-4 cursor-pointer md:hidden" id="icon" onclick="toggleMenu()">
+                        <!-- Hamburger Icon -->
+                        <svg id="hamburger-icon" class="w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm5-1a1 1 0 0 1 1 1v12a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm6 4a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1z"/>
+                        </svg>
+                        <!-- Cross Icon (hidden initially) -->
+                        <svg id="cross-icon" class="w-6 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M14.95 3.293a1 1 0 0 0-1.414-1.414L10 8.586 6.464 5.05a1 1 0 1 0-1.414 1.414L8.586 10 5.05 13.536a1 1 0 1 0 1.414 1.414L10 11.414l3.536 3.536a1 1 0 0 0 1.414-1.414L11.414 10l3.536-3.536a1 1 0 0 0 0-1.414z"/>
+                        </svg>
+                    </div>
+
+                    <div class="hidden md:flex" id="menu">
+                        <div class="flex space-x-6 text-lg font-semibold">
+                        <a href="/" class="text-gray-800 hover:text-gray-600 hover:border-b-2 border-transparent duration-300">Home</a>
                         <div class="relative inline-block text-left dropdown">
-                            <button class="inline-flex justify-center w-full text-lg p-5 font-semibold rounded hover:bg-gray-100 hover:border-b-2 border-transparent duration-300">Programs</button>
+                            <button class="inline-flex justify-center w-full text-lg font-semibold rounded hover:bg-gray-100 hover:border-b-2 border-transparent duration-300">Programs</button>
                             <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                 <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:border-b-2 border-transparent transition duration-300">Program List</a>
                                 <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:border-b-2 border-transparent transition duration-300">New Program</a>
                             </div>
                         </div>
-                    <a href="/about" class="hover:text-gray-600 hover:border-b-2 p-5 border-transparent text-red-500 jump duration-300">Enroll</a>
-                    <a href="/about" class="text-gray-800 hover:text-gray-600 p-5 hover:border-b-2 border-transparent duration-300">About Us</a>
-                    <a href="/contact" class="text-gray-800 hover:text-gray-600 p-5 hover:border-b-2 border-transparent  duration-300">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-                <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
-                    <div class="flex flex-col my-5 mx-5">
-                        <a href="/" class="text-gray-800 hover:text-gray-600 mt-5">Home</a>
-                        <div class="relative inline-block text-left dropdown">
-                            <button class="inline-flex w-full mt-5 text-lg font-semibold text-gray-800 rounded hover:text-gray-600">Programs</button>
-                            <div class="dropdown-content absolute mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                <a href="/programs" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">Program List</a>
-                                <a href="/programs/new" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100">New Program</a>
-                            </div>
+                        <a href="/about" class="hover:text-gray-600 hover:border-b-2 border-transparent text-red-500 jump duration-300">Enroll</a>
+                        <a href="/about" class="text-gray-800 hover:text-gray-600  hover:border-b-2 border-transparent duration-300">About Us</a>
+                        <a href="/contact" class="text-gray-800 hover:text-gray-600 hover:border-b-2 border-transparent duration-300">Contact Us</a>
                         </div>
-                        <a href="/about" class="hover:text-gray-600 jump text-red-500">Enroll</a>
-                        <a href="/about" class="text-gray-800 hover:text-gray-600 mt-5">About Us</a>
-                        <a href="/contact" class="text-gray-800 hover:text-gray-600 mt-5">Contact Us</a>
                     </div>
+
                 </div>
+            <div class="hidden space-y-8 text-lg font-semibold md:hidden" id="mobile-menu">
+            <div class="flex flex-col my-5 mx-5">
+                <a href="/" class="text-gray-800 hover:text-gray-600 m-5">Home</a>
+                <div class="relative text-left flex items-center">
+                    <svg id="minusIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2 hidden">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                    </svg>
+                    <button id="togglePrograms" class="inline-flex w-full text-lg font-semibold text-gray-800 rounded hover:text-gray-600">
+                        
+                        <svg id="plusIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>Programs
+                    </button>
+                </div>
+
+                <div id="programsContent" class="hidden flex flex-col mx-10 mt-2">
+                    <a href="# " class="hover:text-red-300">Program List</a>
+                    <a href="#" class="hover:text-red-300">New Program</a>
+                </div>
+                <a href="/about" class="hover:text-gray-600 jump mx-5 mt-5 text-red-500">Enroll</a>
+                <a href="/about" class="text-gray-800 mx-5 hover:text-gray-600 mt-5">About Us</a>
+                <a href="/contact" class="text-gray-800 mx-5 hover:text-gray-600 mt-5">Contact Us</a>
             </div>
-            </nav>
-        </header>
+            </div>
+
+
+            </div>
+        </nav>
+    </header>
+
     <article >
     <!-- Content section -->
     @hasSection('content')
@@ -163,7 +181,8 @@
 
     @stack('scripts')
     </article>
-    <!-- JavaScript -->
+
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -182,44 +201,69 @@
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 dropdownContent.style.display = 'none';
-            }, 300); // Delay in ms
+            }, 300);
         });
 
-        // Additional event listener to keep dropdown visible when mouse is over it
         dropdownContent.addEventListener('mouseenter', function() {
             clearTimeout(timeout);
         });
 
-        // Hide dropdown when mouse leaves dropdown content
         dropdownContent.addEventListener('mouseleave', function() {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
                 dropdownContent.style.display = 'none';
             }, 300); 
+            });
         });
     });
-});
-     function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const crossIcon = document.getElementById('cross-icon');
 
-    if (menu && hamburgerIcon && crossIcon) {
-        console.log('Menu clicked');
-        
-        if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-            hamburgerIcon.classList.add('hidden');
-            crossIcon.classList.remove('hidden');
-        } else {
-            menu.classList.add('hidden');
-            hamburgerIcon.classList.remove('hidden');
-            crossIcon.classList.add('hidden');
+
+   document.addEventListener('DOMContentLoaded', function() {
+    const togglePrograms = document.getElementById('togglePrograms');
+    const programsContent = document.getElementById('programsContent');
+    const plusIcon = document.getElementById('plusIcon');
+    const minusIcon = document.getElementById('minusIcon');
+
+    togglePrograms.addEventListener('click', function() {
+        programsContent.classList.toggle('hidden');
+        plusIcon.classList.toggle('hidden');
+        minusIcon.classList.toggle('hidden');
+    });
+});
+
+
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const crossIcon = document.getElementById('cross-icon');
+
+            if (menu && hamburgerIcon && crossIcon) {
+                console.log('Menu clicked');
+                
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    hamburgerIcon.classList.add('hidden');
+                    crossIcon.classList.remove('hidden');
+                } else {
+                    menu.classList.add('hidden');
+                    hamburgerIcon.classList.remove('hidden');
+                    crossIcon.classList.add('hidden');
+                }
+            } else {
+                console.error('Menu or icons not found');
+            }
         }
-    } else {
-        console.error('Menu or icons not found');
-    }
-}
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarTop = document.getElementById('navbar-top');
+            const navbarFixed = document.getElementById('navbar-fixed');
+            window.addEventListener('scroll', function() {
+            const isScrolled = window.pageYOffset > navbarTop.offsetTop + navbarTop.offsetHeight;
+
+            navbarTop.classList.toggle('hidden', isScrolled);
+            });
+        });
 
     </script>
 
@@ -241,7 +285,7 @@
                     <ul>
                         <li><a href="/" class="hover:text-gray-400">Home</a></li>
                         <li><a href="/about" class="hover:text-gray-400">About Us</a></li>
-                        <li><a href="/services" class="hover:text-gray-400">Services</a></li>
+                        <li><a href="/services" class="hover:text-gray-400">Programs</a></li>
                         <li><a href="/contact" class="hover:text-gray-400">Contact Us</a></li>
                     </ul>
                 </div>
